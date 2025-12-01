@@ -1,0 +1,21 @@
+import java.util.ArrayList;
+
+/**
+ * Bus.java
+ * Menangani koleksi penumpang dan aturan naik/turun
+ */
+public class Bus {
+    private ArrayList<Penumpang> penumpangBiasa = new ArrayList<>();
+    private ArrayList<Penumpang> penumpangPrioritas = new ArrayList<>();
+    private ArrayList<Penumpang> penumpangBerdiri = new ArrayList<>();
+
+    public static final int ONGKOS_BUS = 2000;
+    private int totalPendapatan = 0;
+
+    // cek apakah ID sudah ada di bus
+    public boolean idExists(int id) {
+        for (Penumpang p : penumpangPrioritas) if (p.getID() == id) return true;
+        for (Penumpang p : penumpangBiasa) if (p.getID() == id) return true;
+        for (Penumpang p : penumpangBerdiri) if (p.getID() == id) return true;
+        return false;
+    }
