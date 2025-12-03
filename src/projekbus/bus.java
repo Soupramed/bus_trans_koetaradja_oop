@@ -36,4 +36,44 @@ public class Bus {
             if (penumpangBiasa.size() < 16) penumpangBiasa.add(p);
             else penumpangBerdiri.add(p);
         }
+ p.kurangiSaldo(ONGKOS_BUS);
+        totalPendapatan += ONGKOS_BUS;
+        return true;
+    }
+
+    public boolean turunkanPenumpang(int id) {
+        for (Penumpang p : new ArrayList<Penumpang>(penumpangPrioritas)) {
+            if (p.getID() == id) {
+                penumpangPrioritas.remove(p);
+                return true;
+            }
+        }
+        for (Penumpang p : new ArrayList<Penumpang>(penumpangBiasa)) {
+            if (p.getID() == id) {
+                penumpangBiasa.remove(p);
+                return true;
+            }
+        }
+        for (Penumpang p : new ArrayList<Penumpang>(penumpangBerdiri)) {
+            if (p.getID() == id) {
+                penumpangBerdiri.remove(p);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int getJumlahPenumpangBiasa() { return penumpangBiasa.size(); }
+    public int getJumlahPenumpangPrioritas() { return penumpangPrioritas.size(); }
+    public int getJumlahPenumpangBerdiri() { return penumpangBerdiri.size(); }
+    public int totalPenumpang() {
+        return getJumlahPenumpangBiasa() + getJumlahPenumpangPrioritas() + getJumlahPenumpangBerdiri();
+    }
+
+    public int getTotalPendapatan() { return totalPendapatan; }
+
+    public ArrayList<Penumpang> getPenumpangBiasa() { return penumpangBiasa; }
+    public ArrayList<Penumpang> getPenumpangPrioritas() { return penumpangPrioritas; }
+    public ArrayList<Penumpang> getPenumpangBerdiri() { return penumpangBerdiri; }
+}
 
