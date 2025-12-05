@@ -71,3 +71,49 @@ public class TestBus {
          System.out.println("❌ ERROR: Masukkan hanya 'y' atau 'n'!");
       }
    }
+
+   private static void welcome() {
+      System.out.println();
+      System.out.println("  ░█▀▄░█░█░█▀▀░▀█▀░█▀█░█▀▄   BUS TRANS KOETARADJA");
+      System.out.println("  ░█▀▄░█░█░█▀▀░░█░░█░█░█░█   KOTA BANDA ACEH");
+      System.out.println("  ░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀▀░");
+      System.out.println();
+   }
+
+   private static void showMainMenu() {
+      System.out.println("==== MENU UTAMA ====");
+      System.out.println("1. Naikkan Penumpang");
+      System.out.println("2. Turunkan Penumpang (by ID)");
+      System.out.println("3. Lihat Dashboard ");
+      System.out.println("4. Simulasi Otomatis (Demo isi cepat)");
+      System.out.println("5. Keluar");
+   }
+
+   private static void pause(Scanner var0) {
+      System.out.println("\nTekan ENTER untuk kembali...");
+
+      try {
+         System.in.read();
+      } catch (Exception var2) {
+      }
+
+   }
+
+   private static void handleNaik(Scanner var0, Bus var1) {
+      int var2 = inputInt(var0, "Masukkan ID (angka): ");
+      if (var1.idExists(var2)) {
+         System.out.println("✖ ID sudah ada di dalam bus. Gunakan ID lain.");
+      } else {
+         int var3 = inputInt(var0, "Umur: ");
+         boolean var4 = inputYesNo(var0, "Hamil? (y/n): ");
+         Penumpang var5 = new Penumpang(var2, var3, var4);
+         if (var1.naikkanPenumpang(var5)) {
+            System.out.println("✔ Penumpang berhasil naik. Sisa saldo: Rp " + var5.getSaldo());
+         } else if (var5.getSaldo() < 2000) {
+            System.out.println("✖ Saldo tidak cukup.");
+         } else {
+            System.out.println("✖ Bus penuh atau tidak bisa naik.");
+         }
+
+      }
+   }
