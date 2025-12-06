@@ -198,3 +198,75 @@ public class TestBus {
             var10000.println("║ " + padRight(var10001, 62) + "║");
          }
       }
+ System.out.println("║ " + padRight("", 62) + "║");
+      System.out.println("║ " + padRight("Penumpang Berdiri (20):", 62) + "║");
+      if (var0.getJumlahPenumpangBerdiri() == 0) {
+         System.out.println("║ " + padRight("  <Kosong>", 62) + "║");
+      } else {
+         var4 = var0.getPenumpangBerdiri().iterator();
+
+         while(var4.hasNext()) {
+            var5 = (Penumpang)var4.next();
+            var10000 = System.out;
+            var10001 = "  ► " + shortDesc(var5);
+            var10000.println("║ " + padRight(var10001, 62) + "║");
+         }
+      }
+
+      System.out.println(var2);
+      String var9 = String.format(" Total Penumpang : %2d    |    Total Pendapatan : Rp %d ", var0.totalPenumpang(), var0.getTotalPendapatan());
+      System.out.println("║ " + centerText(var9, 62) + "║");
+      System.out.println(var3);
+   }
+
+   private static String shortDesc(Penumpang var0) {
+      String var1 = "\ud83e\uddd1";
+      if (var0.getUmur() > 60) {
+         var1 = "\ud83d\udc74";
+      } else if (var0.getUmur() < 10) {
+         var1 = "\ud83e\uddd2";
+      } else if (var0.getHamil()) {
+         var1 = "\ud83e\udd30";
+      }
+
+      return String.format("%s ID:%03d | Umr:%2d | Saldo: Rp %d", var1, var0.getID(), var0.getUmur(), var0.getSaldo());
+   }
+
+   private static String padRight(String var0, int var1) {
+      if (var0.length() >= var1) {
+         return var0.substring(0, var1);
+      } else {
+         StringBuilder var2 = new StringBuilder(var0);
+
+         while(var2.length() < var1) {
+            var2.append(' ');
+         }
+
+         return var2.toString();
+      }
+   }
+
+   private static String centerText(String var0, int var1) {
+      if (var0.length() >= var1) {
+         return var0.substring(0, var1);
+      } else {
+         int var2 = var1 - var0.length();
+         int var3 = var2 / 2;
+         int var4 = var2 - var3;
+         StringBuilder var5 = new StringBuilder();
+
+         int var6;
+         for(var6 = 0; var6 < var3; ++var6) {
+            var5.append(' ');
+         }
+
+         var5.append(var0);
+
+         for(var6 = 0; var6 < var4; ++var6) {
+            var5.append(' ');
+         }
+
+         return var5.toString();
+      }
+   }
+}
