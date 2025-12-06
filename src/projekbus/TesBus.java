@@ -117,3 +117,78 @@ public class TestBus {
 
       }
    }
+   private static void handleTurun(Scanner var0, Bus var1) {
+      int var2 = inputInt(var0, "Masukkan ID penumpang yang turun: ");
+      if (var1.turunkanPenumpang(var2)) {
+         System.out.println("✔ Penumpang ID " + var2 + " berhasil diturunkan.");
+      } else {
+         System.out.println("✖ Penumpang tidak ditemukan.");
+      }
+
+   }
+
+   private static void simulateDemo(Bus var0) {
+      Penumpang var1 = new Penumpang(101, 65, false);
+      Penumpang var2 = new Penumpang(102, 30, false);
+      Penumpang var3 = new Penumpang(103, 8, false);
+      Penumpang var4 = new Penumpang(104, 27, true);
+      Penumpang var5 = new Penumpang(105, 45, false);
+      var0.naikkanPenumpang(var1);
+      var0.naikkanPenumpang(var2);
+      var0.naikkanPenumpang(var3);
+      var0.naikkanPenumpang(var4);
+      var0.naikkanPenumpang(var5);
+
+      for(int var6 = 200; var6 < 205; ++var6) {
+         var0.naikkanPenumpang(new Penumpang(var6, 20 + var6 % 5, false));
+      }
+
+      System.out.println("\n[Simulasi] 8 penumpang otomatis dimasukkan untuk demo.");
+   }
+
+   private static void render3DPanel(Bus var0) {
+      String var1 = "╔══════════════════════════════════════════════════════════════╗";
+      String var2 = "╠══════════════════════════════════════════════════════════════╣";
+      String var3 = "╚══════════════════════════════════════════════════════════════╝";
+      System.out.println();
+      System.out.println(var1);
+      System.out.println("║" + centerText("░█▀▄░█░█░█▀▀  BUS TRANS KOETARADJA  ░▀░▀░▀▀▀░▀▀▀", 62) + "║");
+      System.out.println(var2);
+      System.out.println("║ " + padRight("STATUS BUS", 62) + "║");
+      System.out.println("║ " + padRight("──────────────────────────────────────────────────────", 62) + "║");
+      System.out.println("║ " + padRight("Kursi Prioritas (4):", 62) + "║");
+      PrintStream var10000;
+      String var10001;
+      Iterator var4;
+      Penumpang var5;
+      if (var0.getJumlahPenumpangPrioritas() == 0) {
+         System.out.println("║ " + padRight("  <Kosong>", 62) + "║");
+      } else {
+         var4 = var0.getPenumpangPrioritas().iterator();
+
+         while(var4.hasNext()) {
+            var5 = (Penumpang)var4.next();
+            var10000 = System.out;
+            var10001 = "  ► " + shortDesc(var5);
+            var10000.println("║ " + padRight(var10001, 62) + "║");
+         }
+      }
+
+      System.out.println("║ " + padRight("", 62) + "║");
+      System.out.println("║ " + padRight("Kursi Biasa (16):", 62) + "║");
+      if (var0.getJumlahPenumpangBiasa() == 0) {
+         System.out.println("║ " + padRight("  <Kosong>", 62) + "║");
+      } else {
+         int var7 = 0;
+         Iterator var8 = var0.getPenumpangBiasa().iterator();
+
+         while(var8.hasNext()) {
+            Penumpang var6 = (Penumpang)var8.next();
+            var10000 = System.out;
+            var10001 = "  ► " + shortDesc(var6);
+            var10000.println("║ " + padRight(var10001, 62) + "║");
+            ++var7;
+            if (var7 >= 8) {
+               break;
+            }
+         }
