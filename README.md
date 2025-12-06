@@ -8,7 +8,4 @@ Projek akhir Pemrograman Berorientasi Objek. Aplikasi ini mensimulasikan sistem 
 - Kursi biasa
 - Penumpang berdiri
 - Pembayaran saldo otomatis
-- Dashboard 3D ASCII
-- Simulasi penumpang otomatis
-
-Dibuat menggunakan Java (BlueJ compatible).
+- Simulasi penumpang otomat
