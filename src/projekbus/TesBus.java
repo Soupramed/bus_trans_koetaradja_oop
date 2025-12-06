@@ -192,3 +192,9 @@ public class TestBus {
                break;
             }
          }
+ if (var0.getJumlahPenumpangBiasa() > 8) {
+            var10000 = System.out;
+            var10001 = "  ...(" + var0.getJumlahPenumpangBiasa() + " total biasa)";
+            var10000.println("║ " + padRight(var10001, 62) + "║");
+         }
+      }
